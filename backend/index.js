@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({origin:"https://dev-card-client.vercel.app"}));
 
 // Replace with your actual API key
  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY); 
