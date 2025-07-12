@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Shadows+Into+Light+Two&display=swap');
+@import "tailwindcss";
+@theme{
+      --font-paint: 'Finger Paint', sans-serif;
+      --color-primary: #F0DFAD;
+}
+
+
+body {
+      @apply font-paint;     
+}
