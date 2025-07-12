@@ -163,9 +163,16 @@ const App = () => {
         path="/dev-card"
         element={
           <div className="min-h-screen bg-amber-200 p-8 md:p-12 flex flex-col items-center">
-            <h1 className="relative text-5xl md:text-6xl font-extrabold mb-10 text-center bg-yellow-800 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] leading-[1.2] px-6 py-2 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-full before:h-1 before:rounded-full before:bg-yellow-800 before:opacity-80 before:animate-pulse">
-              ByteCard
-            </h1>
+            <div className="flex items-center gap-4 mb-10">
+              <img
+                src="/dev-card-logo.png"
+                alt="ByteCard Logo"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-yellow-600 object-contain"
+              />
+              <h1 className="text-5xl md:text-6xl font-extrabold bg-yellow-800 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] leading-none">
+                <span className="inline-block pb-1">ByteCard</span>
+              </h1>
+            </div>
 
             {loading ? (
               <motion.p
