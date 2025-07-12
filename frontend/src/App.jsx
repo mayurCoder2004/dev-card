@@ -66,29 +66,32 @@ const App = () => {
   // Load data from URL on component mount
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    
+
     // Check for simple query parameters (gh and lc)
-    const githubUsername = urlParams.get('gh');
-    const leetcodeUsername = urlParams.get('lc');
-    
+    const githubUsername = urlParams.get("gh");
+    const leetcodeUsername = urlParams.get("lc");
+
     if (githubUsername && leetcodeUsername) {
-      console.log('Loading from URL params:', { githubUsername, leetcodeUsername });
+      console.log("Loading from URL params:", {
+        githubUsername,
+        leetcodeUsername,
+      });
       fetchData(githubUsername, leetcodeUsername);
       return;
     }
-    
+
     // Fallback: Check for encoded data parameter (for backward compatibility)
-    const encodedData = urlParams.get('data');
+    const encodedData = urlParams.get("data");
     if (encodedData) {
       try {
         const decodedData = JSON.parse(atob(encodedData));
         if (decodedData.github && decodedData.leetcode) {
-          console.log('Loading from encoded data:', decodedData);
+          console.log("Loading from encoded data:", decodedData);
           fetchData(decodedData.github, decodedData.leetcode);
         }
       } catch (error) {
         setError("Invalid share link");
-        console.error('Failed to decode URL data:', error);
+        console.error("Failed to decode URL data:", error);
       }
     }
   }, [location.search]);
@@ -105,9 +108,16 @@ const App = () => {
         path="/"
         element={
           <div className="min-h-screen bg-amber-200 p-8 md:p-12 flex flex-col items-center">
-            <h1 className="relative text-5xl md:text-6xl font-extrabold mb-10 text-center bg-yellow-800 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] leading-[1.2] px-6 py-2 before:absolute before:-bottom-2 before:left-1/2 before:-translate-x-1/2 before:w-full before:h-1 before:rounded-full before:bg-yellow-800 before:opacity-80 before:animate-pulse">
-              ByteCard
-            </h1>
+            <div className="flex items-center gap-4 mb-10">
+              <img
+                src="/dev-card-logo.png"
+                alt="ByteCard Logo"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-yellow-600 object-contain"
+              />
+              <h1 className="text-5xl md:text-6xl font-extrabold bg-yellow-800 bg-clip-text text-transparent drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] leading-none">
+                <span className="inline-block pb-1">ByteCard</span>
+              </h1>
+            </div>
 
             {error && (
               <motion.p
@@ -167,9 +177,11 @@ const App = () => {
               </motion.p>
             ) : !isDataReady ? (
               <div className="text-center">
-                <p className="text-yellow-700 font-semibold mb-4">Data not available.</p>
+                <p className="text-yellow-700 font-semibold mb-4">
+                  Data not available.
+                </p>
                 <button
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate("/")}
                   className="px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105"
                 >
                   Go Back to Form
